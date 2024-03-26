@@ -1,205 +1,106 @@
 {% load static %}
-<header
-  class="header header--loggedIn"
-  style="
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 56px; 
-    z-index: 10;
-  "
+
+<div
+  style="background: #3d3b3c; padding: 10px 40px; display: flex"
 >
-  <div
-    style="
-      width: 100%;
-      height: 56px;
-      left: 0px;
-      top: 0px;
-      position: relative;
-      background: #3d3b3c;
-      border-radius: 7px;
-      overflow: hidden;
-    "
-  >
+  <div style="
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+  ">
     <img
-      style="
-        width: 41px;
-        height: 41px;
-        left: 21px;
-        top: 8px;
-        position: absolute;
-        border-radius: 119px;
-      "
+      style="width: 40px; height: 40px; border-radius: 50%; display: block;"
       src="{% static 'images/logo.png' %}"
     />
     <div
       class="searchbar-container"
       style="
-        width: 624px;
-        height: 34px;
-        left: 80px;
-        top: 11px;
-        position: absolute;
         background: white;
-        border-radius: 7px;
-        overflow: hidden;
+        display: flex;
+        align-items: center;
+        padding: 5px 10px;
+        border-radius: 5px;
       "
     >
       <img
         style="
           width: 22px;
           height: 22px;
-          left: 8px;
-          top: 6px;
-          position: absolute;
+          display: block;
+          margin-right: 10px;  
+
         "
         src="{% static 'images/find-icon.svg' %}"
       />
-      <div
-        class="searchbar-container"
+
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search events..."
         style="
-          width: 100%;
-          height: 100%;
-          left: 42px;
-          top: 0px;
-          position: absolute;
-          color: black;
-          font-size: 12px;
-          font-family: JetBrains Mono;
-          font-weight: 400;
-          word-wrap: break-word;
+          height: 34px;
+          width: 500px;
           outline: none;
+          border: none;
         "
-      >
-        <input
-          type="text"
-          id="search-input"
-          placeholder="Search events..."
-          style="
-            height: 100%;
-            width: 100%;
-            top: 0px;
-            left: 0px;
-            position: absolute;
-            outline: none;
-            border: none;
-          "
-        />
-        <script>
-          document
-            .getElementById("search-input")
-            .addEventListener("keyup", (event) => {
-              if (event.key === "Enter") {
-                // trigger search here
-              } else if (event.key === " ") {
-                // show search bar when user clicks on search icon
-                document.querySelector(".searbar-container").style.cssText = "";
-              }
-            });
-        </script>
-      </div>
+      />
+      <script>
+        document
+          .getElementById("search-input")
+          .addEventListener("keyup", (event) => {
+            if (event.key === "Enter") {
+              // trigger search here
+            } else if (event.key === " ") {
+              // show search bar when user clicks on search icon
+              document.querySelector(".searbar-container").style.cssText = "";
+            }
+          });
+      </script>
     </div>
+  </div>
+
+  <div style="
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    column-gap: 40px;
+  ">
     <div
       class="home-container"
       style="
-        width: 99px;
-        height: 27px;
-        left: 816px;
-        top: 15px;
-        position: absolute;
-        border-radius: 7px;
-        overflow: hidden;
+        line-height: 40px;
       "
     >
-      <div
-        style="
-          width: 99px;
-          height: 40px;
-          left: 0px;
-          top: 0px;
-          position: absolute;
-          text-align: center;
-          color: white;
-          font-size: 16px;
-          font-family: JetBrains Mono;
-          font-weight: 400;
-          word-wrap: break-word;
-        "
-      >
-        Trang chủ
-      </div>
-      <div
-        style="
-          width: 99px;
-          height: 0px;
-          left: 0px;
-          top: 23.5px;
-          position: absolute;
-          border: 1px white solid;
-        "
-      ></div>
+      Trang chủ
     </div>
+
     <div
       class="my-ticket-container"
       style="
-        width: 99px;
-        height: 40px;
-        left: 973px;
-        top: 15px;
-        position: absolute;
-        border-radius: 7px;
-        overflow: hidden;
+        line-height: 40px;
       "
     >
-      <div
-        style="
-          width: 99px;
-          height: 40px;
-          left: 0px;
-          top: 0px;
-          position: absolute;
-          text-align: center;
-          color: white;
-          font-size: 16px;
-          font-family: JetBrains Mono;
-          font-weight: 400;
-          word-wrap: break-word;
-        "
-      >
-        Vé của tôi
-      </div>
+      Vé của tôi
     </div>
+
     <div
       class="user-info-container"
       style="
-        left: 1127px;
-        top: 8px;
-        position: absolute;
-        justify-content: flex-start;
+        display: flex;
         align-items: center;
-        gap: 9px;
-        display: inline-flex;
       "
     >
-      <div
-        style="
-          width: 143px;
-          height: 27px;
-          text-align: right;
-          color: white;
-          font-size: 15px;
-          font-family: JetBrains Mono;
-          font-weight: 400;
-          word-wrap: break-word;
-        "
-      >
+      <span style="
+        display: block;
+        line-height: 40px;
+        margin-right: 20px;
+      ">
         Quicky Booster
-      </div>
+      </span>
       <img
-        style="width: 41px; height: 41px; border-radius: 119px"
+        style="width: 40px; height: 40px; border-radius: 50%"
         src="{% static 'images/logo.png' %}"
       />
     </div>
   </div>
-</header>
+</div>
