@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 
 def home(request):
-    return render(request, "main-card.html")
+    return render(request, "payment.html")
 
 
 def profile(request):
