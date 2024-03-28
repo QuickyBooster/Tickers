@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 
 def home(request):
-    return render(request, "myticket-incoming.html")
+    return render(request, "event.html")
 
 
 def profile(request):
