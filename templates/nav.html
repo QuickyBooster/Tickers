@@ -1,17 +1,13 @@
 {% load static %}
 
-<div
-  style="background: #3d3b3c; padding: 10px 40px; display: flex"
->
-  <div style="
-    display: flex;
-    align-items: center;
-    column-gap: 20px;
-  ">
-    <img
-      style="width: 40px; height: 40px; border-radius: 50%; display: block;"
-      src="{% static 'images/logo.png' %}"
-    />
+<div style="background: #3d3b3c; padding: 10px 40px; display: flex">
+  <div style="display: flex; align-items: center; column-gap: 20px">
+    <a href="{% url 'home' %}">
+      <img
+        style="width: 40px; height: 40px; border-radius: 50%; display: block"
+        src="{% static 'images/logo.png' %}"
+      />
+    </a>
     <div
       class="searchbar-container"
       style="
@@ -23,13 +19,7 @@
       "
     >
       <img
-        style="
-          width: 22px;
-          height: 22px;
-          display: block;
-          margin-right: 10px;  
-
-        "
+        style="width: 22px; height: 22px; display: block; margin-right: 10px"
         src="{% static 'images/find-icon.svg' %}"
       />
 
@@ -37,12 +27,7 @@
         type="text"
         id="search-input"
         placeholder="Search events..."
-        style="
-          height: 34px;
-          width: 500px;
-          outline: none;
-          border: none;
-        "
+        style="height: 34px; width: 500px; outline: none; border: none"
       />
       <script>
         document
@@ -59,54 +44,51 @@
     </div>
   </div>
 
-  <div style="
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    column-gap: 40px;
-  ">
-    <div
-      class="home-container"
-      style="
-        line-height: 40px;
-        color: white;
-        cursor: pointer;
-      "
-    >
-      Trang chủ
-    </div>
-
-    <div
-      class="my-ticket-container"
-      style="
-        line-height: 40px;
-        color: white;
-        cursor: pointer;
-      "
-    >
-      Vé của tôi
-    </div>
-
-    <div
-      class="user-info-container"
-      style="
-        display: flex;
-        align-items: center;
-      "
-    >
-      <span style="
-        display: block;
-        line-height: 40px;
-        margin-right: 20px;
-        color: white;
-        cursor: pointer;
-      ">
-        Quicky Booster
-      </span>
-      <img
-        style="width: 40px; height: 40px; border-radius: 50%"
-        src="{% static 'images/logo.png' %}"
-      />
-    </div>
+  <div
+    style="
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      column-gap: 40px;
+    "
+  >
+    <a href="{% url 'home' %}">
+      <div
+        class="home-container"
+        style="line-height: 40px; color: white; cursor: pointer"
+      >
+        Trang chủ
+      </div>
+    </a>
+    <a href="{% url 'my-ticket' %}">
+      <div
+        class="my-ticket-container"
+        style="line-height: 40px; color: white; cursor: pointer"
+      >
+        Vé của tôi
+      </div>
+    </a>
+    <a href="{% url 'profile' %}">
+      <div
+        class="user-info-container"
+        style="display: flex; align-items: center"
+      >
+        <span
+          style="
+            display: block;
+            line-height: 40px;
+            margin-right: 20px;
+            color: white;
+            cursor: pointer;
+          "
+        >
+          Quicky Booster
+        </span>
+        <img
+          style="width: 40px; height: 40px; border-radius: 50%"
+          src="{% static 'images/logo.png' %}"
+        />
+      </div>
+    </a>
   </div>
 </div>

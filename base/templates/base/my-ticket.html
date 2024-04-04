@@ -1,0 +1,48 @@
+{% extends 'main.html' %} {% block content %}
+<div
+  style="
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  "
+>
+  <div style="">
+    <div
+      style="
+        display: flex;
+        margin: auto;
+        padding: 10px;
+        justify-content: left;
+        align-items: center;
+      "
+    >
+      {%include 'myticket-incoming.html'%}
+    </div>
+    <div
+      style="
+        display: flex;
+        margin: auto;
+        padding: 10px;
+        justify-content: left;
+        align-items: center;
+      "
+    >
+      {%include 'myticket-incoming.html'%}
+    </div>
+  </div>
+  <div>
+    <div
+      style="
+        display: flex;
+        margin: auto;
+        padding: 10px;
+        justify-content: right;
+        align-items: center;
+      "
+    >
+      {%include 'myticket-short.html'%}
+    </div>
+  </div>
+</div>
+{%endblock%}

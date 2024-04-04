@@ -1,26 +1,24 @@
 from django.shortcuts import render
 
 
-
 def home(request):
-    return render(request, "event.html")
+    return render(request, "base/home.html")
 
 
 def profile(request):
-    return render(request, 'event.html')
+    return render(request, "base/profile.html")
 
 
-# def my_ticket(request):
-#     return HttpResponse("my_ticket")
+def my_ticket(request):
+    return render(request, "base/my-ticket.html")
 
 
-# def payment(request):
-#     return HttpResponse("payment")
+def payment(request):
+    return render(request,"base/payment.html")
 
 
-# def event(request):
-#     return HttpResponse("event")
+def event(request):
+    return render(request,"base/event.html")
 
 
-# def login(request):
-#     return HttpResponse("profile")
+
