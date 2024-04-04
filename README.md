@@ -4,6 +4,11 @@ This app is created for major project 2: Integrate DevOps in event ticket sellin
 
 To run this project locally, you can use the following command:
 
+Enter the virutal env:
+
+    .env/Scripts/activate
+Then, run the server:
+
     py manage.py runserver 3000
 
 The project will start at port 80 and you can access it using this link:
