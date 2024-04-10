@@ -14,12 +14,12 @@ o	date_created
 
 
 class User(AbstractUser):
-    email = models.EmailField(unique=True)
-    name = models.CharField(max_length=20, null=True)
+    username = models.EmailField(unique=True, null=True)
+    name = models.CharField(max_length=20, blank=True)
     dob = models.DateField(null=True)
     phone = models.TextField(unique=True, blank=False, null=True)
     date_created = models.DateTimeField(auto_now=True)
-    USERNAME_FIELD = "email"
+    USERNAME_FIELD = "username"
     REQUIRED_FIELDS = []
 
 
@@ -65,9 +65,9 @@ class Event(models.Model):
     date = models.DateTimeField(null=False)
     location = models.TextField(max_length=120)
     picture_master = models.ImageField(null=True, default="logo.png")
-    picture_panel = models.ImageField(null=True, default="logo.png")
+    picture_panel = models.ImageField(null=True, default="images/logo.png")
     detail = models.TextField(max_length=700, null=True)
-    detail_picture = models.ImageField(null=True, default="logo.png")
+    detail_picture = models.ImageField(null=True, default="images/logo.png")
 
     class Meta:
         ordering = ["-date", "-location"]

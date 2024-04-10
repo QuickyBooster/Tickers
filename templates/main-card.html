@@ -1,16 +1,18 @@
+{% load static %}
 <div
-  style="
+ style="
     width: 230px;
     position: relative;
     background: white;
     border-radius: 7px;
-  "
+ "
 >
-  <img
+ <img
     style="width: 230px; height: 300px; display: block;"
-    src="https://via.placeholder.com/230x300"
-  />
-  <div
+    src="static{{ event.picture_master.url }}"
+    {% comment %} src="{% static "images/haha.jpg" %}" {% endcomment %}
+ />
+ <div
     style="
       width: calc(100% - 20px);
       position: absolute;
@@ -20,7 +22,7 @@
       border-top-right-radius: 7px;
       padding: 10px;
     "
-  >
+ >
     <div
       style="
         color: black;
@@ -29,11 +31,12 @@
         font-weight: 400;
       "
     >
-      Bloody happy spring day
+      {{ event.name }}
     </div>
 
     <div style="margin-top: 10px; display: flex; align-items: flex-start; justify-content: space-between;">
       <div style="display: flex; gap: 5px; flex-wrap: wrap; max-width: 145px;">
+        {% for tag in event.tags.all %}
         <div
           style="
             padding: 3px 15px;
@@ -45,34 +48,9 @@
             font-weight: 400;
           "
         >
-          @cosplay
+          @{{ tag.name }}
         </div>
-        <div
-          style="
-            padding: 3px 15px;
-            background: #c6c3c5;
-            border-radius: 99px;
-            color: black;
-            font-size: 10px;
-            font-family: JetBrains Mono;
-            font-weight: 400;
-          "
-        >
-          @cosplay
-        </div>
-        <div
-          style="
-            padding: 3px 15px;
-            background: #c6c3c5;
-            border-radius: 99px;
-            color: black;
-            font-size: 10px;
-            font-family: JetBrains Mono;
-            font-weight: 400;
-          "
-        >
-          @cosplay
-        </div>
+        {% endfor %}
       </div>
 
       <div
@@ -83,7 +61,7 @@
           font-weight: 400;
         "
       >
-        [Hà Nội]
+        [{{ event.location }}]
       </div>
     </div>
     
@@ -96,7 +74,7 @@
           font-weight: 400;
         "
       >
-        25/12/2024
+        {{ event.date|date:"d/m/Y" }}
       </div>
 
       <div
@@ -107,8 +85,8 @@
           font-weight: 400;
         "
       >
-        250000 VNĐ
+        {{ event.price }} VNĐ
       </div>
     </div>
-  </div>
+ </div>
 </div>

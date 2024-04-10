@@ -1,8 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .models import Event
 
 
 def home(request):
-    return render(request, "base/home.html")
+    events = Event.objects.all()
+    
+    # Pass the events data to the template
+    return render(request, "base/home.html", {'events': events})
 
 
 def profile(request):
@@ -14,11 +18,8 @@ def my_ticket(request):
 
 
 def payment(request):
-    return render(request,"base/payment.html")
+    return render(request, "base/payment.html")
 
 
 def event(request):
-    return render(request,"base/event.html")
-
-
-
+    return render(request, "base/event.html")

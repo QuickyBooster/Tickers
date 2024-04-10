@@ -49,37 +49,11 @@
   <div class="left-div">{% include "main-sort.html" %}</div>
 
   <div class="card-container">
+    {% for event in events %}
     <div class="main-card">
-    {% include "main-card.html" %} 
+      {% include "main-card.html" with event=event %} 
     </div>
-    <div class="main-card">
-    {% include "main-card.html" %} 
-    </div>
-    <div class="main-card">
-    {% include "main-card.html" %} 
-    </div>
-    <div class="main-card">
-    {% include "main-card.html" %} 
-    </div>
-    <div class="main-card">
-    {% include "main-card.html" %} 
-    </div>
-    <div class="main-card">
-    {% include "main-card.html" %} 
-    </div>
-    <div class="main-card">
-    {% include "main-card.html" %} 
-    </div>
-    <div class="main-card">
-    {% include "main-card.html" %} 
-    </div>
-    <div class="main-card">
-    {% include "main-card.html" %} 
-    </div>
-    <div class="main-card">
-    {% include "main-card.html" %} 
-    </div>
-    
+    {% endfor %}
    
   </div class="clear">
   </div>
