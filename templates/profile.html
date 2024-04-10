@@ -7,7 +7,9 @@
     position: relative;
   "
 >
-  <div style="display: flex; align-items: center; justify-content: space-between;">
+  <div
+    style="display: flex; align-items: center; justify-content: space-between"
+  >
     <div
       style="
         color: black;
@@ -54,9 +56,9 @@
     </div>
   </div>
 
-  <div style="width: 100%; margin-top: 25px;">
-    <div style="display: flex; justify-content: space-between;">
-      <div style="display: flex; align-items: center; column-gap: 25px;">
+  <div style="width: 100%; margin-top: 25px">
+    <div style="display: flex; justify-content: space-between">
+      <div style="display: flex; align-items: center; column-gap: 25px">
         <div
           style="
             color: black;
@@ -69,7 +71,7 @@
         >
           Họ và tên
         </div>
-  
+
         <div
           style="
             width: 330px;
@@ -77,11 +79,14 @@
             background: #d9d9d9;
             border-radius: 7px;
             border: 1px black solid;
+            align-content: center;
           "
-        ></div>
+        >
+          {{ user.name }}
+        </div>
       </div>
-  
-      <div style="display: flex; align-items: center; column-gap: 25px;">
+
+      <div style="display: flex; align-items: center; column-gap: 25px">
         <div
           style="
             color: black;
@@ -94,7 +99,7 @@
         >
           Ngày sinh
         </div>
-  
+
         <div
           style="
             width: 130px;
@@ -107,13 +112,15 @@
             line-height: 35px;
           "
         >
-          20/03/2024
+          {{user.dob}}
         </div>
       </div>
     </div>
 
-    <div style="display: flex; justify-content: space-between; margin-top: 25px;">
-      <div style="display: flex; align-items: center; column-gap: 25px;">
+    <div
+      style="display: flex; justify-content: space-between; margin-top: 25px"
+    >
+      <div style="display: flex; align-items: center; column-gap: 25px">
         <div
           style="
             color: black;
@@ -126,7 +133,7 @@
         >
           Số điện thoại
         </div>
-  
+
         <div
           style="
             width: 330px;
@@ -134,52 +141,28 @@
             background: #d9d9d9;
             border-radius: 7px;
             border: 1px black solid;
-          "
-        ></div>
-      </div>
-  
-      <div style="display: flex; align-items: center; column-gap: 25px;">
-        <div
-          style="
-            color: black;
             font-size: 13px;
-            font-family: JetBrains Mono;
-            font-weight: 400;
-            width: 70px;
-            text-align: end;
-          "
-        >
-          Giới tính
-        </div>
-  
-        <div
-          style="
-            width: 150px;
-            height: 35px;
-            background: #d9d9d9;
-            border-radius: 7px;
-            border: 1px black solid;
-            font-size: 13px;
-            text-align: center;
+            align-content: center;
             line-height: 35px;
           "
         >
-          Nam
+          {{user.phone}}
         </div>
       </div>
     </div>
   </div>
 
-  <div 
+  <div
     style="
-      display: flex; 
-      flex-direction: column; 
-      row-gap: 15px; 
-      position: absolute; 
-      right: -150px; 
-      bottom: 50%; 
-      transform: translateY(50%);"
-    >
+      display: flex;
+      flex-direction: column;
+      row-gap: 15px;
+      position: absolute;
+      right: -150px;
+      bottom: 50%;
+      transform: translateY(50%);
+    "
+  >
     <div
       style="
         background: #3d3b3c;
@@ -195,7 +178,7 @@
     >
       Vé đã mua
     </div>
-  
+
     <div
       style="
         background: #3d3b3c;
@@ -211,7 +194,7 @@
     >
       Mua vé
     </div>
-  
+
     <div
       style="
         background: #3d3b3c;

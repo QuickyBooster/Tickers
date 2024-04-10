@@ -1,3 +1,4 @@
+{% load static %}
 <div
   style="
     width: 250px;
@@ -15,7 +16,7 @@
       text-align: center;
     "
   >
-    Sắp xếp
+    Bộ lọc
   </div>
 
   <div style="
@@ -65,9 +66,8 @@
       style="
         width: 20px;
         height: 20px;
-        background: black;
       "
-    ></div>
+    ><img src="{% static "images/check-box.svg" %}"/></div>
   </div>
 
   <div style="
@@ -78,13 +78,13 @@
   ">
     <div
       style="
-        color: black;
         font-size: 13px;
         font-family: JetBrains Mono;
         font-weight: 400;
       "
     >
       Địa điểm
+      
     </div>
 
     <div
@@ -114,9 +114,8 @@
           width: 15px;
           height: 15px;
           transform-origin: 0 0;
-          background: black;
-        "
-      ></div>
+        " 
+      ><img/ src="{% static "images/Vector.svg" %}"></div>
     </div>
   </div>
 

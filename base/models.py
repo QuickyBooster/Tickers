@@ -70,7 +70,7 @@ class Event(models.Model):
     detail_picture = models.ImageField(null=True, default="images/logo.png")
 
     class Meta:
-        ordering = ["-date", "-location"]
+        ordering = ["date", "-location"]
 
     def __str__(self):
         return self.name
@@ -146,3 +146,16 @@ class Receipt(models.Model):
 
     def __str__(self):
         return str(self.transfer_id)
+
+
+class Message(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    body = models.TextField()
+    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-updated', '-created']
+
+    def __str__(self):
+        return self.body[0:50]

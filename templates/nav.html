@@ -68,6 +68,7 @@
         Vé của tôi
       </div>
     </a>
+    {% comment %}
     <a href="{% url 'profile' %}">
       <div
         class="user-info-container"
@@ -90,5 +91,40 @@
         />
       </div>
     </a>
+    {% endcomment %} {% if request.user.is_authenticated %}
+    <div>
+      <a
+        href="{% url 'profile' request.user.id %}"
+        class="user-info-container"
+        style="display: flex; align-items: center"
+      >
+        <span
+          style="
+            display: block;
+            line-height: 40px;
+            margin-right: 20px;
+            color: white;
+            cursor: pointer;
+          "
+        >
+          {{ request.user.username }}
+        </span>
+        <img
+          style="width: 40px; height: 40px; border-radius: 50%"
+          src="{% static 'images/logo.png' %}"
+        />
+      </a>
+    </div>
+    {% else %}
+
+    <!-- Not Logged In -->
+    <a href="{% url 'login' %}">
+      <img
+        style="width: 40px; height: 40px; border-radius: 50%"
+        src="{% static 'images/avatar.svg' %}"
+      />
+      <p>Login</p>
+    </a>
+    {% endif %}
   </div>
 </div>
