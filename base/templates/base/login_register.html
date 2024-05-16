@@ -5,24 +5,24 @@
     <div class="layout__box">
       <div class="layout__boxHeader">
         <div class="layout__boxTitle">
-          <h3>Login</h3>
+          <h3>Login {{ message }}</h3>
         </div>
       </div>
       <div class="layout__body">
         <h2 class="auth__tagline">Tickers</h2>
 
-        <form method="POST" class="form" action="">
+        <form method="POST" class="form" action="{% url 'login'%}">
           {% csrf_token %}
           <div
             style="padding-top: 10px; padding-bottom: 5px"
             class="form__group form__group"
           >
-            <label for="room_name">Username</label>
+            <label for="room_name">Email</label>
             <input
               id="username"
               name="username"
               type="text"
-              placeholder="your username"
+              placeholder="your email"
             />
           </div>
           <div
@@ -75,16 +75,18 @@
         </div>
       </div>
       <div class="layout__body">
-        <h2 class="auth__tagline">Find your study partner</h2>
+        <h2 class="auth__tagline">Find your tickets here</h2>
 
-        <form method="POST" class="form" action="">
+        <form method="POST" class="form" action="{% url 'register'%}">
           {% csrf_token %} {% for field in form %}
           <div
             class="form__group"
             style="padding-top: 10px; padding-bottom: 5px"
           >
-            <label for="room_name">{{ field.label }}</label>
-            {{ field }}
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }} {% if field.errors %}
+            <div class="error">{{ field.errors }}</div>
+            {% endif %}
           </div>
           {% endfor %}
 

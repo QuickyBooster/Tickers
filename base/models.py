@@ -17,7 +17,7 @@ class User(AbstractUser):
     username = models.EmailField(unique=True, null=True)
     name = models.CharField(max_length=20, blank=True)
     dob = models.DateField(null=True)
-    phone = models.TextField(unique=True, blank=False, null=True)
+    phone = models.CharField(max_length=10,unique=True, blank=False, null=True)
     date_created = models.DateTimeField(auto_now=True)
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = []

@@ -33,6 +33,7 @@ def event(request):
 
 def loginPage(request):
     page = "login"
+    message = ""
 
     if request.user.is_authenticated:
         return redirect("home")
@@ -40,18 +41,22 @@ def loginPage(request):
     if request.method == "POST":
         username = request.POST.get("username").lower()
         password = request.POST.get("password")
+        print(username, password)
         try:
             user = User.objects.get(username=username)
         except:
             messages.error(request, "user doesn't exist")
+            message = "Failed. Username or Pwd wrong"
 
         user = authenticate(request, username=username, password=password)
+        print(user)
         if user is not None:
             login(request, user)
+            print("authenticate success!")
             return redirect("home")
         else:
             messages.error(request, "username or password doesn't exist")
-    context = {"page": page}
+    context = {"page": page, "message": message}
     return render(request, "base/login_register.html", context)
 
 
@@ -63,12 +68,14 @@ def registerPage(request):
     if request.method == "POST":
         form = MyUserCreationForm(request.POST)
         if form.is_valid():
+            print("valid form submission")
             user = form.save(commit=False)
             user.username = user.username.lower()
             user.save()
             login(request, user)
             return redirect("home")
         else:
+            print("???")
             messages.error(request, "An error occurred during registration")
 
     return render(request, "base/login_register.html", context)
