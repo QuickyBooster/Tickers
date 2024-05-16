@@ -1,0 +1,13 @@
+name: Deploy app
+on:
+  workflow_dispatch: 
+
+run-name: Deploy to by @${{ github.actor }}
+
+jobs:
+  deploy-to-vps:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy service to VPS
+        run: echo "Deploy successfully"
