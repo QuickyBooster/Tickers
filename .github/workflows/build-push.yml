@@ -42,7 +42,7 @@ jobs:
 
       - name: echo ??
         run: |
-          echo ${{ github.sha }} > Release.txt
+          echo ${{ github.sha }} > release
 
           
       - name: Release
