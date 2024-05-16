@@ -11,7 +11,7 @@ Then, run the server:
 
     py manage.py runserver 3000
 
-The project will start at port 80 and you can access it using this link:
+The project will start at port 3000 and you can access it using this link:
 
     http://127.0.0.1:3000/
 
