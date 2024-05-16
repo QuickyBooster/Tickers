@@ -7,7 +7,7 @@ on:
     branches: ["master"]
 
 jobs:
-  build:
+  minor-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,5 +32,5 @@ jobs:
     uses: ./.github/workflows/build-push.yml
     permissions:
       contents: write
-    needs: build
+    needs: minor-test
     secrets: inherit

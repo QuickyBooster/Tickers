@@ -38,7 +38,7 @@ jobs:
           WITH_V: false
           DEFAULT_BUMP: patch
           REALEASE_BRANCHS: master
-          TAG_CONTEXT: branch
+          TAG_CONTEXT: repo
 
       - name: echo ??
         run: |
