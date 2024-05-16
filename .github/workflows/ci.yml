@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@latest
+      - uses: actions/checkout@Latest
 
       - name: Set up Python 3.12
-        uses: actions/setup-python@latest
+        uses: actions/setup-python@Latest
         with:
           python-version: 3.12
 
