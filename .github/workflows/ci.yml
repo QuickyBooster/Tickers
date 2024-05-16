@@ -31,6 +31,6 @@ jobs:
       run: |
         python manage.py test
 
-    - name: Build service image - iZOTA
-      uses: ./.github/workflows/validate-build-push.yml
+    - name: Build service image
+      uses: ./.github/workflows/build-push.yml
 

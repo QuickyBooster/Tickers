@@ -8,18 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    environment:
-      name: ${{ inputs.ENVIRONMENT_DEPLOYMENT || 'develop-izota'}}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.1.2
-
-      - name: Prepare site by organisation
-        env:
-          API_BASE_AUTHEN: ${{ vars.API_BASE_AUTHEN }}
-        run: |
-          echo "Done!"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
