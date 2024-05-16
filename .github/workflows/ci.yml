@@ -9,8 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -32,3 +30,6 @@ jobs:
   build-image:
     name: Build Image and push to docker hub
     uses: ./.github/workflows/build-push.yml
+    permissions:
+      contents: write
+    needs: build
