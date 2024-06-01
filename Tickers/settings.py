@@ -13,7 +13,7 @@ SECRET_KEY = "django-insecure-yx2a4vts-0rtqgqyt%t&r(f=4p%pwqs)y831#o_2m51i26jmgh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["booster.io.vn"]
 AUTH_USER_MODEL = "base.User"
 
 # Application definition
