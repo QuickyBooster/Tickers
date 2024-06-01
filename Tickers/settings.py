@@ -13,7 +13,7 @@ SECRET_KEY = "django-insecure-yx2a4vts-0rtqgqyt%t&r(f=4p%pwqs)y831#o_2m51i26jmgh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["booster.io.vn"]
+ALLOWED_HOSTS = ["booster.io.vn","127.0.0.1"]
 AUTH_USER_MODEL = "base.User"
 
 # Application definition
@@ -63,12 +63,14 @@ WSGI_APPLICATION = "Tickers.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'mydb',
+        'USER': 'myuser',
+        'PASSWORD': 'someoneP@ss',
+        'HOST': '222.255.238.163',
+        'PORT': '5432',
+    }}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
