@@ -10,7 +10,6 @@
  <img
     style="width: 230px; height: 300px; display: block;"
     src="static{{ event.picture_master.url }}"
-    {% comment %} src="{% static "images/haha.jpg" %}" {% endcomment %}
  />
  <div
     style="
@@ -61,7 +60,7 @@
           font-weight: 400;
         "
       >
-        [{{ event.location }}]
+        [{{ event.location|truncatewords:6 }}]
       </div>
     </div>
     
@@ -85,7 +84,7 @@
           font-weight: 400;
         "
       >
-        {{ event.price }} VNĐ
+        {{ event.lowest_ticket_price }} VNĐ
       </div>
     </div>
  </div>

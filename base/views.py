@@ -4,11 +4,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm, MyUserCreationForm
 from django.contrib import messages
-
+from django.db.models import Min
 
 def home(request):
-    events = Event.objects.all()
-
+    # events = Event.objects.all()
+    events = Event.objects.annotate(lowest_ticket_price=Min('ticket_types__price'))
     # Pass the events data to the template
     return render(request, "base/home.html", {"events": events})
 

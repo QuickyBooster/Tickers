@@ -1,15 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MinLengthValidator
 
 """
 •	Table user
-o	id (primary key)
-o	email (unique)
-o	password (encrypted?? Or hash ??)
-o	name
-o	dob
-o	phone
-o	date_created
+id (primary key)
+email(unique)
+password (encrypted?? Or hash ??)
+name
+dob
+phone
+date_created
+award_point
 """
 
 
@@ -17,25 +19,50 @@ class User(AbstractUser):
     username = models.EmailField(unique=True, null=True)
     name = models.CharField(max_length=20, blank=True)
     dob = models.DateField(null=True)
-    phone = models.CharField(max_length=10,unique=True, blank=False, null=True)
+    phone = models.CharField(
+        max_length=10,
+        validators=[MinLengthValidator(10, "Phone number contains 10 numbers!")],
+        unique=True,
+        blank=False,
+        null=True,
+        default="0123456789",
+    )
     date_created = models.DateTimeField(auto_now=True)
+    award_point = models.IntegerField(null=True)
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = []
 
 
 """
 •	Table organizer
-o	id (primary key)
-o	name 
-o	detail
-o	location
+id (primary key)
+commission_rate
+total_revenue
+detail
+tax_code
+head_office_address
+legal_representative
+phone_number
 """
 
 
 class Organizer(models.Model):
-    name = models.CharField(max_length=70, null=True)
+    name = models.CharField(max_length=70)
+    commissison_rate = models.DecimalField(decimal_places=4, max_digits=5)
+    total_revenue = models.DecimalField(decimal_places=3, max_digits=10, null=True)
     detail = models.TextField(max_length=500)
-    location = models.TextField(max_length=120)
+    tax_code = models.CharField(
+        max_length=10,
+        validators=[
+            MinLengthValidator(10, "This field must contain at least 10 chars")
+        ],
+    )
+    head_office_address = models.TextField(max_length=120)
+    legal_representative = models.CharField(max_length=20)
+    phone_number = models.CharField(
+        max_length=10,
+        validators=[MinLengthValidator(10, "Phone number must be 10 numbers")],
+    )
 
     class Meta:
         ordering = ["-name"]
@@ -46,28 +73,33 @@ class Organizer(models.Model):
 
 """
 •	Table event
-o	id (primary key)
-o	name
-o	organizer (foreign key)
-o	date (include time)
-o	location
-o	picture_master
-o	picture_panel
-o	detail
-o	detail_picture
-
+id (primary key)
+name
+organizer (foreign key)
+date (include time)
+location
+picture_master
+picture_panel
+detail
+detail_picture
+tag
 """
 
 
 class Event(models.Model):
-    name = models.CharField(max_length=70, null=True)
-    organizer = models.ForeignKey(Organizer, on_delete=models.CASCADE, null=True)
-    date = models.DateTimeField(null=False)
+    name = models.CharField(max_length=70)
+    organizer = models.ForeignKey(
+        Organizer,
+        on_delete=models.CASCADE,
+        related_name="events",
+    )
+    date = models.DateTimeField()
     location = models.TextField(max_length=120)
     picture_master = models.ImageField(null=True, default="logo.png")
     picture_panel = models.ImageField(null=True, default="images/logo.png")
     detail = models.TextField(max_length=700, null=True)
     detail_picture = models.ImageField(null=True, default="images/logo.png")
+    tag = models.CharField(max_length=10)
 
     class Meta:
         ordering = ["date", "-location"]
@@ -78,56 +110,33 @@ class Event(models.Model):
 
 """
 •	Table ticket_type
-o	id (primary key)
-o	event (foreign key)
-o	type
-o	price
-o	quantity
-
+id (primary key)
+event (foreign key)
+type
+price
+quantity
 """
 
 
 class TicketType(models.Model):
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, null=True)
-    type = models.CharField(max_length=30, null=True)
-    price = models.DecimalField(decimal_places=2, null=True, max_digits=12)
-    quantity = models.IntegerField(null=True)
+    event = models.ForeignKey(
+        Event, on_delete=models.CASCADE, related_name="ticket_types"
+    )
+    type = models.CharField(max_length=30)
+    price = models.IntegerField()
+    quantity = models.IntegerField()
 
     class Meta:
         ordering = ["-event", "-price"]
 
     def __str__(self):
-        return self.type
-
-
-"""
-•	Table ticket
-o	id (primary key)
-o	ticket_type (foreign key)
-o	quantity
-o	profile (foreign key)
-o	total
-"""
-
-
-class Ticket(models.Model):
-    ticket_type = models.ForeignKey(TicketType, on_delete=models.CASCADE, null=True)
-    quantity = models.IntegerField(null=True)
-    profile = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    total = models.DecimalField(decimal_places=2, null=True, max_digits=12)
-
-    class Meta:
-        ordering = ["-profile", "-total"]
-
-    def __str__(self):
-        return str(self.total)
+        return str(self.event.name + "_" + self.type)
 
 
 """
 •	Table receipt
 o	id (primary key)
-o	ticket (foreign key) – [array]
-o	profile (foreign key)
+o	user (foreign key)
 o	total
 o	date
 o	transfer_id
@@ -135,10 +144,9 @@ o	transfer_id
 
 
 class Receipt(models.Model):
-    tickets = models.ManyToManyField(Ticket, related_name="tickets", blank=False)
-    profile = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    total = models.DecimalField(decimal_places=2, null=True, max_digits=12)
-    date = models.DateTimeField(auto_now_add=True, null=False, blank=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    total = models.DecimalField(decimal_places=3, max_digits=12)
+    date = models.DateTimeField(auto_now_add=True, blank=False)
     transfer_id = models.BigIntegerField(blank=False)
 
     class Meta:
@@ -148,6 +156,53 @@ class Receipt(models.Model):
         return str(self.transfer_id)
 
 
+"""
+•	Table ticket
+id (primary key)
+ticket_type (foreign key)
+user (foreign key)
+seat
+receipt
+"""
+
+
+class Ticket(models.Model):
+    ticket_type = models.ForeignKey(TicketType, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    seat = models.CharField(max_length=5)
+    receipt = models.ForeignKey(
+        Receipt, on_delete=models.CASCADE, related_name="tickets"
+    )
+
+    class Meta:
+        ordering = ["-ticket_type", "-seat"]
+
+    def __str__(self):
+        return str(self.seat)
+
+
+"""
+Feedback
+user (primary key)
+eventid (primary key)
+rating
+comment
+"""
+
+
+class Feedback(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE,null=True)
+    rating = models.IntegerField(null=True)
+    comment = models.TextField(max_length=200,null=True)
+
+    class Meta:
+        ordering = ["-event", "-user"]
+
+    def __str__(self):
+        return str(self.event + "_" + self.user.username)
+
+
 class Message(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
@@ -155,7 +210,7 @@ class Message(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-updated', '-created']
+        ordering = ["-updated", "-created"]
 
     def __str__(self):
         return self.body[0:50]
