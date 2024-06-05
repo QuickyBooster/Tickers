@@ -1,28 +1,13 @@
-{% load static%}
-<div
-  style="
-    width: 1330px;
-  "
->
+{% load static %}
+<div style="width: 1330px">
   <img
-    style="
-      width: 1330px;
-      height: 412px;
-    "
-    src="https://via.placeholder.com/1330x412"
+    style="width: 1330px; height: 412px"
+    src="{% static event.picture_panel.url %}"
   />
 
-  <div
-    style="
-      margin-top: 25px;
-    "
-  >
+  <div style="margin-top: 25px">
     <div
-      style="
-        border-radius: 7px;
-        border: 1px #969497 solid;
-        padding: 10px 20px;
-      "
+      style="border-radius: 7px; border: 1px #b9acc0 solid; padding: 10px 20px"
     >
       <div
         style="
@@ -32,11 +17,18 @@
           font-weight: 400;
         "
       >
-        Bloody happy spring day
+        {{event.name}}
       </div>
 
-      <div style="display: flex; align-items: center; justify-content: space-between; margin: 20px 0;">
-        <div 
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin: 20px 0;
+        "
+      >
+        <div
           style="
             color: black;
             font-size: 13px;
@@ -44,15 +36,11 @@
             font-weight: 400;
           "
         >
-          Công ty sản xuất sự kiện Cót Lê
+          {{ event.organizer.name }}
         </div>
 
         <div
-          style="
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-          "
+          style="display: flex; align-items: center; justify-content: flex-end"
         >
           <div
             style="
@@ -63,12 +51,12 @@
               margin-right: 15px;
             "
           >
-            19h - 21h30 03/02/2025
+            {{event.date|date:"d/m/Y:h/m"}}
           </div>
-          <div 
+          <div
             style="
-              width: 30px; 
-              height: 30px; 
+              width: 30px;
+              height: 30px;
               position: relative;
               background-color: black;
             "
@@ -76,8 +64,14 @@
         </div>
       </div>
 
-      <div style="display: flex; align-items: center; justify-content: space-between;">
-        <div 
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
+        <div
           style="
             color: black;
             font-size: 13px;
@@ -85,20 +79,11 @@
             font-weight: 400;
           "
         >
-          28 Nguyễn Huệ, Quận 3, TP. HCM
+          {{ event.organizer.head_office_address }}
         </div>
 
-        <div
-          style="
-            display: flex;
-            align-items: center;
-          "
-        >
-          <div
-            style="
-              margin-right: 15px;
-            "
-          >
+        <div style="display: flex; align-items: center">
+          <div style="margin-right: 15px">
             <div
               style="
                 color: black;
@@ -108,7 +93,7 @@
                 text-align: right;
               "
             >
-              Nhà hát Độc lập Tự do
+              {{ event.location_name }}
             </div>
             <div
               style="
@@ -120,11 +105,18 @@
                 text-align: right;
               "
             >
-              25 Quang Trung, Phường Thống Nhất, Quận Hà Nội, TP HCM
+              {{ event.location_address }}
             </div>
           </div>
 
-          <div style="width: 30px; height: 30px; position: relative; background-color: black;"></div>
+          <div
+            style="
+              width: 30px;
+              height: 30px;
+              position: relative;
+              background-color: black;
+            "
+          ></div>
         </div>
       </div>
     </div>
@@ -148,11 +140,7 @@
         Danh sách vé
       </div>
 
-      <div
-        style="
-          margin-top: 40px;
-        "
-      >
+      <div style="margin-top: 40px">
         <div
           style="
             display: flex;
@@ -173,7 +161,7 @@
           >
             Vé
           </div>
-    
+
           <div
             style="
               text-align: center;
@@ -197,9 +185,21 @@
               font-weight: 400;
             "
           >
-            Số lượng
+            Hiện còn
           </div>
-
+          <div
+            onclick='location.href="payment/{{event.id}}";'
+            style="
+              text-align: center;
+              color: black;
+              font-size: 13px;
+              font-family: JetBrains Mono;
+              width: 200px;
+              font-weight: 400;
+            "
+          >
+            Đặt vé
+          </div>
           <div
             style="
               text-align: end;
@@ -213,7 +213,7 @@
             Thành tiền
           </div>
         </div>
-
+        {% for item in ticket_types %}
         <div
           style="
             display: flex;
@@ -233,20 +233,7 @@
               width: 200px;
             "
           >
-            SVIP-1
-          </div>
-    
-          <div
-            style="
-              text-align: center;
-              color: black;
-              font-size: 13px;
-              font-family: JetBrains Mono;
-              width: 200px;
-              font-weight: 400;
-            "
-          >
-            250000 VND
+            {{ item.type }}
           </div>
 
           <div
@@ -257,56 +244,10 @@
               font-family: JetBrains Mono;
               width: 200px;
               font-weight: 400;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              column-gap: 10px;
             "
           >
-            <span 
-              style="
-                font-size: 16px;
-                display: block;
-                background-color: #ccc;
-                width: 25px;
-                font-weight: bold;
-                "
-            >+</span>
-            <span>2</span>
-            <span 
-              style="
-                font-size: 16px;
-                display: block;
-                background-color: #ccc;
-                width: 25px;
-                font-weight: bold;
-                "
-            >-</span>
+            {{ item.price }} VND
           </div>
-
-          <div
-            style="
-              text-align: end;
-              color: black;
-              font-size: 13px;
-              font-family: JetBrains Mono;
-              width: 200px;
-              font-weight: 400;
-            "
-          >
-            500000 VND
-          </div>
-        </div>
-
-        <div
-          style="
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 2px solid black;
-            padding-bottom: 15px;
-            margin-top: 15px;
-          "
-        >
           <div
             style="
               text-align: start;
@@ -317,22 +258,8 @@
               width: 200px;
             "
           >
-            SVIP-1
+            {{ item.quantity }}
           </div>
-    
-          <div
-            style="
-              text-align: center;
-              color: black;
-              font-size: 13px;
-              font-family: JetBrains Mono;
-              width: 200px;
-              font-weight: 400;
-            "
-          >
-            250000 VND
-          </div>
-
           <div
             style="
               text-align: center;
@@ -347,25 +274,27 @@
               column-gap: 10px;
             "
           >
-            <span 
+            <span
               style="
                 font-size: 16px;
                 display: block;
                 background-color: #ccc;
                 width: 25px;
                 font-weight: bold;
-                "
-            >+</span>
+              "
+              >+</span
+            >
             <span>2</span>
-            <span 
+            <span
               style="
                 font-size: 16px;
                 display: block;
                 background-color: #ccc;
                 width: 25px;
                 font-weight: bold;
-                "
-            >-</span>
+              "
+              >-</span
+            >
           </div>
 
           <div
@@ -381,14 +310,8 @@
             500000 VND
           </div>
         </div>
-
-        <div 
-          style="
-            margin-top: 20px;
-            display: flex;
-            justify-content: flex-end;
-          "
-        >
+        {% endfor %}
+        <div style="margin-top: 20px; display: flex; justify-content: flex-end">
           <div
             style="
               text-align: center;
@@ -416,16 +339,16 @@
           </div>
         </div>
 
-        <div 
+        <div
           style="
-            font-size: 16px; 
-            font-weight: 500; 
+            font-size: 16px;
+            font-weight: 500;
             background-color: black;
             color: white;
             padding: 10px 30px;
             width: 100px;
             text-align: center;
-            margin-top: 20px; 
+            margin-top: 20px;
             margin-left: auto;
             border-radius: 10px;
           "
@@ -436,11 +359,7 @@
     </div>
 
     <div
-      style="
-        display: flex;
-        justify-content: space-between;
-        margin-top: 30px;
-      "
+      style="display: flex; justify-content: space-between; margin-top: 30px"
     >
       <div
         style="
@@ -470,22 +389,11 @@
             margin-bottom: 20px;
           "
         >
-          Trong trường hợp nhóm này bị điều tra bởi các cơ quan trực thuộc bộ công
-          an (hoặc các tổ chức chính trị tương tự phục vụ cho nhà nước CHXHCNVN),
-          tôi khẳng định mình không liên quan tới nhóm hoặc những cá nhân khác
-          trong nhóm này. Tôi không rõ tại sao mình lại có mặt ở đây vào thời điểm
-          này, có lẽ tài khoản của tôi đã được thêm bởi một bên thứ ba. Tôi cũng
-          xin khẳng định rằng mình không hề giúp sức cho những hành động chống phá
-          Đảng và nhà nước của các thành viên trong nhóm này
+          {{event.detail}}
         </div>
         <img
-          style="
-            width: 800px;
-            height: 444px;
-            display: block;
-            margin: 0 auto;
-          "
-          src="https://via.placeholder.com/800x444"
+          style="width: 800px; height: 444px; display: block; margin: 0 auto"
+          src="{% static event.picture_master.url %}"
         />
       </div>
 
@@ -499,15 +407,10 @@
         "
       >
         <img
-          style="
-            width: 167px;
-            height: 219px;
-            display: block;
-            margin: 0 auto;
-          "
-          src="https://via.placeholder.com/167x219"
+          style="width: 167px; height: 219px; display: block; margin: 0 auto"
+          src="{% static event.organizer.logo %}"
         />
-        
+
         <div
           style="
             color: black;
@@ -517,7 +420,7 @@
             margin: 15px 0;
           "
         >
-          Công ty sản xuất sự kiện Cót Lê
+          {{ event.organizer.name }}
         </div>
         <div
           style="
@@ -526,14 +429,8 @@
             font-family: JetBrains Mono;
             font-weight: 400;
           "
-        >Người theo hương hoa mây mù giăng lối Làn sương khói phôi phai
-          đưa bước ai xa rồi Đơn côi mình ta vấn vương Hồi ức trong men say
-          chiều mưa buồn (Gì nào?) Ngăn giọt lệ ngừng khiến khoé mi sầu bi Đường
-          xưa nơi cố nhân từ giã biệt li Cánh hoa rụng rơi Phận duyên mong manh
-          rẽ lối trong mơ ngày tương phùng <br />Tiếng khóc cuốn theo làn gió
-          bay Thuyền ai qua sông lỡ quên vớt ánh trăng tàn nơi này Trống vắng
-          bóng ai dần hao gầy<br />Lòng ta xin nguyện khắc ghi trong tim tình
-          nồng mê say
+        >
+          {{ event.organizer.detail }}
         </div>
       </div>
     </div>

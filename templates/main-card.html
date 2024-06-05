@@ -1,5 +1,5 @@
 {% load static %}
-<div
+<div onclick='location.href="event/{{event.id}}";'
  style="
     width: 230px;
     position: relative;
@@ -9,7 +9,7 @@
 >
  <img
     style="width: 230px; height: 300px; display: block;"
-    src="static{{ event.picture_master.url }}"
+    src="{% static event.picture_master.url %}"
  />
  <div
     style="

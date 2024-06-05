@@ -6,9 +6,10 @@ from .forms import UserForm, MyUserCreationForm
 from django.contrib import messages
 from django.db.models import Min
 
+
 def home(request):
     # events = Event.objects.all()
-    events = Event.objects.annotate(lowest_ticket_price=Min('ticket_types__price'))
+    events = Event.objects.annotate(lowest_ticket_price=Min("ticket_types__price"))
     # Pass the events data to the template
     return render(request, "base/home.html", {"events": events})
 
@@ -18,17 +19,27 @@ def profile(request, pk):
     user = User.objects.get(id=pk)
     return render(request, "base/profile.html", {"user": user})
 
-
+@login_required(login_url="login")
 def my_ticket(request):
     return render(request, "base/my-ticket.html")
 
-
+@login_required(login_url="login")
 def payment(request):
-    return render(request, "base/payment.html")
+    if request.method == "POST":
+        total = request.POST.get("total")
+        event = request.POST.get("event")
+        event = request.POST.get("event")
+    context = {"page": page, "message": message}
+    return render(request, "base/payment.html",context)
 
 
-def event(request):
-    return render(request, "base/event.html")
+def event(request, pk):
+    event = Event.objects.get(id=pk)
+    event = Event.objects.get(pk=pk)
+    ticket_types = event.ticket_types.all()
+    return render(
+        request, "base/event.html", {"event": event, "ticket_types": ticket_types}
+    )
 
 
 def loginPage(request):

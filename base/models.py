@@ -43,6 +43,7 @@ tax_code
 head_office_address
 legal_representative
 phone_number
+logo
 """
 
 
@@ -63,6 +64,7 @@ class Organizer(models.Model):
         max_length=10,
         validators=[MinLengthValidator(10, "Phone number must be 10 numbers")],
     )
+    logo = models.ImageField(null=True, default="logo.png")
 
     class Meta:
         ordering = ["-name"]
@@ -77,7 +79,8 @@ id (primary key)
 name
 organizer (foreign key)
 date (include time)
-location
+location_name
+location_address
 picture_master
 picture_panel
 detail
@@ -94,7 +97,8 @@ class Event(models.Model):
         related_name="events",
     )
     date = models.DateTimeField()
-    location = models.TextField(max_length=120)
+    location_name = models.CharField(max_length=120,null=True)
+    location_address = models.TextField(max_length=120)
     picture_master = models.ImageField(null=True, default="logo.png")
     picture_panel = models.ImageField(null=True, default="images/logo.png")
     detail = models.TextField(max_length=700, null=True)
@@ -102,7 +106,7 @@ class Event(models.Model):
     tag = models.CharField(max_length=10)
 
     class Meta:
-        ordering = ["date", "-location"]
+        ordering = ["date", "-location_name"]
 
     def __str__(self):
         return self.name
