@@ -1,3 +1,4 @@
+{% load static %}
 <div
   style="
     width: 900px;
@@ -11,7 +12,7 @@
   <div style="border-radius: 7px; overflow: hidden">
     <img
       style="width: 900px; height: 412px; object-fit: cover"
-      src="https://via.placeholder.com/1330x412"
+      src="{% static ticket_view.ticket_type.event.picture_panel.url %}"
     />
   </div>
 
@@ -42,7 +43,7 @@
           font-weight: 400;
         "
       >
-        Bloody happy spring day
+        {{ ticket_view.ticket_type.event.name }}
       </div>
 
       <div
@@ -62,7 +63,7 @@
             margin-left: 10px;
           "
         >
-          19h - 21h30 03/02/2025
+          {{ ticket_view.ticket_type.event.date| date:"h/m:d/m/Y" }}
         </div>
       </div>
 
@@ -84,7 +85,7 @@
               font-weight: 700;
             "
           >
-            Nhà hát Độc lập Tự do
+            {{ ticket_view.ticket_type.event.location_name }}
           </div>
           <div
             style="
@@ -94,7 +95,7 @@
               font-weight: 400;
             "
           >
-            25 Quang Trung, Phường Thống Nhất, Quận Hà Nội, TP HCM
+            {{ ticket_view.ticket_type.event.location_address }}
           </div>
         </div>
       </div>
@@ -146,7 +147,7 @@
           font-weight: 700;
         "
       >
-        Bloody happy spring day
+        {{ ticket_view.ticket_type.event.name }}
       </div>
     </div>
 
@@ -169,7 +170,7 @@
             width: 200px;
           "
         >
-          Vé
+          Vị trí
         </div>
 
         <div
@@ -182,20 +183,7 @@
             font-weight: 400;
           "
         >
-          Đơn giá
-        </div>
-
-        <div
-          style="
-            text-align: center;
-            color: black;
-            font-size: 13px;
-            font-family: JetBrains Mono;
-            width: 200px;
-            font-weight: 400;
-          "
-        >
-          Số lượng
+          Hạng
         </div>
 
         <div
@@ -211,7 +199,7 @@
           Thành tiền
         </div>
       </div>
-
+      {% for ticket in ticket_list %}
       <div
         style="
           display: flex;
@@ -231,7 +219,7 @@
             width: 200px;
           "
         >
-          SVIP-1
+          {{ ticket.seat }}
         </div>
 
         <div
@@ -244,22 +232,8 @@
             font-weight: 400;
           "
         >
-          250000 VND
+          {{ ticket.ticket_type.type }}
         </div>
-
-        <div
-          style="
-            text-align: center;
-            color: black;
-            font-size: 13px;
-            font-family: JetBrains Mono;
-            width: 200px;
-            font-weight: 400;
-          "
-        >
-          2
-        </div>
-
         <div
           style="
             text-align: end;
@@ -270,71 +244,10 @@
             font-weight: 400;
           "
         >
-          500000 VND
+        {{ ticket.ticket_type.price }} VND
         </div>
       </div>
-
-      <div
-        style="
-          display: flex;
-          justify-content: space-between;
-          border-bottom: 2px solid black;
-          padding-bottom: 15px;
-          margin-top: 15px;
-        "
-      >
-        <div
-          style="
-            text-align: start;
-            color: black;
-            font-size: 13px;
-            font-family: JetBrains Mono;
-            font-weight: 400;
-            width: 200px;
-          "
-        >
-          SVIP-1
-        </div>
-
-        <div
-          style="
-            text-align: center;
-            color: black;
-            font-size: 13px;
-            font-family: JetBrains Mono;
-            width: 200px;
-            font-weight: 400;
-          "
-        >
-          250000 VND
-        </div>
-
-        <div
-          style="
-            text-align: center;
-            color: black;
-            font-size: 13px;
-            font-family: JetBrains Mono;
-            width: 200px;
-            font-weight: 400;
-          "
-        >
-          2
-        </div>
-
-        <div
-          style="
-            text-align: end;
-            color: black;
-            font-size: 13px;
-            font-family: JetBrains Mono;
-            width: 200px;
-            font-weight: 400;
-          "
-        >
-          500000 VND
-        </div>
-      </div>
+      {% endfor %}
 
       <div style="margin-top: 20px; display: flex; justify-content: flex-end">
         <div
@@ -361,7 +274,7 @@
             width: 200px;
           "
         >
-          1000000 VNĐ
+          {{ total }} VNĐ
         </div>
       </div>
     </div>
@@ -380,7 +293,7 @@
   >
     <img
       style="width: 167px; height: 219px; display: block; margin-right: 40px"
-      src="https://via.placeholder.com/167x219"
+      src="{% static ticket_view.ticket_type.event.organizer.logo.url %}"
     />
 
     <div style="width: 496px">
@@ -392,7 +305,7 @@
           font-weight: 400;
           display: block;
         "
-        >Công ty sản xuất sự kiện Cót Lê</span
+        >{{ ticket_view.ticket_type.event.organizer.name }}</span
       >
 
       <span
@@ -404,8 +317,7 @@
           display: block;
           margin-top: 10px;
         "
-        >Người theo hương hoa mây mù giăng lối Làn sương khói phôi phai đưa bước
-        ai xa rồi Đơn côi mình ta vấn vương Hồi ức trong men say chiều mưa buồn
+        >{{ ticket_view.ticket_type.event.organizer.detail }}
       </span>
     </div>
   </div>

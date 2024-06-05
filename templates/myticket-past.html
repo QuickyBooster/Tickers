@@ -1,3 +1,4 @@
+{% load static %}
 <div
   style="
     width: 300px;
@@ -19,7 +20,7 @@
       margin-bottom: 20px;
     "
   >
-    Sắp diễn ra - Vé
+    Đã diễn ra - Vé
   </div>
 
   <div
@@ -64,8 +65,8 @@
       overflow-y: auto;
     "
   >
-    {% for ticket in ticket_future%}
-
+    {% for ticket in ticket_past%}
+    
     <div
       style="
         background: white;

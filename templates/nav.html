@@ -68,33 +68,10 @@
         Vé của tôi
       </div>
     </a>
-    {% comment %}
-    <a href="{% url 'profile' %}">
-      <div
-        class="user-info-container"
-        style="display: flex; align-items: center"
-      >
-        <span
-          style="
-            display: block;
-            line-height: 40px;
-            margin-right: 20px;
-            color: white;
-            cursor: pointer;
-          "
-        >
-          Quicky Booster
-        </span>
-        <img
-          style="width: 40px; height: 40px; border-radius: 50%"
-          src="{% static 'images/logo.png' %}"
-        />
-      </div>
-    </a>
-    {% endcomment %} {% if request.user.is_authenticated %}
+    {% if request.user.is_authenticated %}
     <div>
       <a
-        href="{% url 'profile' request.user.id %}"
+        href="{% url 'profile' %}"
         class="user-info-container"
         style="display: flex; align-items: center"
       >
@@ -121,7 +98,7 @@
     <a href="{% url 'login' %}">
       <img
         style="width: 40px; height: 40px; border-radius: 50%"
-        src="{% static 'images/avatar.svg' %}"
+        src="{% static 'images/logo.png' %}"
       />
       <p>Login</p>
     </a>

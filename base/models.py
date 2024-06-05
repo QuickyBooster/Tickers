@@ -172,7 +172,7 @@ receipt
 
 class Ticket(models.Model):
     ticket_type = models.ForeignKey(TicketType, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='ticket_bought')
     seat = models.CharField(max_length=5)
     receipt = models.ForeignKey(
         Receipt, on_delete=models.CASCADE, related_name="tickets"
@@ -218,3 +218,12 @@ class Message(models.Model):
 
     def __str__(self):
         return self.body[0:50]
+
+class PendingPayment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    tickets = models.ManyToManyField(Ticket, related_name="pending_payments")
+    receipt = models.ForeignKey(Receipt, on_delete=models.CASCADE, related_name="pending_payments")
+    status = models.CharField(max_length=20, default='Pending')
+
+    def __str__(self):
+        return f"{self.user.username}'s Payment - {self.status}"
