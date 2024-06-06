@@ -195,8 +195,7 @@
       Mua vé
     </div>
 
-    <div
-      onclick="window.location.href='/logout/'"
+    <a
       style="
         background: #3d3b3c;
         border-radius: 7px;
@@ -208,8 +207,8 @@
         text-align: center;
         min-width: 70px;
       "
+      href="{% url 'logout' %}"
+      >Đăng xuất</a
     >
-      Đăng xuất
-    </div>
   </div>
 </div>

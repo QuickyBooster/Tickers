@@ -12,7 +12,7 @@ print(BASE_DIR)
 SECRET_KEY = "django-insecure-yx2a4vts-0rtqgqyt%t&r(f=4p%pwqs)y831#o_2m51i26jmgh"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["booster.io.vn","127.0.0.1"]
 AUTH_USER_MODEL = "base.User"
