@@ -139,11 +139,12 @@ class TicketType(models.Model):
 
 """
 •	Table receipt
-o	id (primary key)
-o	user (foreign key)
-o	total
-o	date
-o	transfer_id
+id (primary key)
+user (foreign key)
+total
+date
+transfer_id
+status
 """
 
 

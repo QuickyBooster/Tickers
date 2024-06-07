@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 print(BASE_DIR)
@@ -10,11 +10,15 @@ print(BASE_DIR)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-yx2a4vts-0rtqgqyt%t&r(f=4p%pwqs)y831#o_2m51i26jmgh"
+# try:
+#     SECRET_KEY = os.environ["SECRET_KEY"]
+# except KeyError as e:
+#     raise RuntimeError("Could not find a SECRET_KEY in environment") from e
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["booster.io.vn", "127.0.0.1"]
+ALLOWED_HOSTS = [".booster.io.vn", "127.0.0.1"]
 AUTH_USER_MODEL = "base.User"
 
 # Application definition
