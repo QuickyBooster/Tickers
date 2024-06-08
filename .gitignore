@@ -1,3 +1,5 @@
 .env
 .DJANGO_SECRET_KEY
 nohup.out
+base/migration/
+base/__pycache__/
