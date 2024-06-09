@@ -1,6 +1,7 @@
 name: Deploy app
 on:
   workflow_dispatch: 
+  workflow_call:
 
 run-name: Deploy to VPS by @${{ github.actor }}
 

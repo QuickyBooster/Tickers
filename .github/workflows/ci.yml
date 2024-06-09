@@ -29,8 +29,6 @@ jobs:
 
   deploy:
     name: Deploy on VPS
-    uses: .github/workflows/deployment.yml
-    permissions:
-      contents: write
+    uses: ./.github/workflows/deployment.yml
     needs: minor-test
     secrets: inherit
