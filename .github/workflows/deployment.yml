@@ -17,8 +17,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            cd /home/booster/Tickers && git pull
-            PID=$(sudo netstat -npl | awk '/:85/' | awk -F"[ /]+" '{print $7; exit}'); sudo kill -9 "$PID"
-            nohup python3 manage.py runserver 85 --insecure &
-            pwd
+            cd /home/booster && ./action
 
