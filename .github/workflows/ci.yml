@@ -27,9 +27,9 @@ jobs:
         run: |
           python manage.py test
 
-  build-image:
+  deploy:
     name: Build Image and push to docker hub
-    uses: ./.github/workflows/build-push.yml
+    uses: ./.github/workflows/deployment.yml
     permissions:
       contents: write
     needs: minor-test

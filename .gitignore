@@ -3,3 +3,5 @@
 nohup.out
 base/__pycache__/
 base/migrations/
+Tickers/__pycache__/
+db.sqlite3

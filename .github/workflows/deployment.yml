@@ -9,10 +9,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: SSH to VPC
-        run: echo "Deploy successfully"
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd /home/booster/Tickers && git pull
+            PID=$(sudo netstat -npl | awk '/:85/' | awk -F"[ /]+" '{print $7; exit}'); sudo kill -9 "$PID"
+            nohup python3 manage.py runserver 85 --insecure &
+            pwd
 
-      - name: Re run container
-        run: |
-          cd /path/
-          git pull
