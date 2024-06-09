@@ -28,7 +28,7 @@ jobs:
           python manage.py test
 
   deploy:
-    name: Build Image and push to docker hub
+    name: Deploy on VPS
     uses: ./.github/workflows/deployment.yml
     permissions:
       contents: write
