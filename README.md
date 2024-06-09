@@ -15,3 +15,6 @@ The project will start at port 3000 and you can access it using this link:
 
     http://127.0.0.1:3000/
 
+git add .
+git commit -m "update 1"
+git push
